@@ -27,8 +27,9 @@
    - smbclient
    - gawk
 
-- name: Install Plugin prerequisites for Ubuntu
-  apt: pkg={{ item }} state=present
-  with_items:
-   - libradiusclient-ng-dev
-  when: ansible_distribution == 'Ubuntu'
+# - name: Install Plugin prerequisites for Ubuntu
+#   apt: pkg={{ item }} state=present
+#   with_items:
+#    - libradiusclient-ng-dev
+#    libfreeradius-client2
+#   when: ansible_distribution == 'Ubuntu'
