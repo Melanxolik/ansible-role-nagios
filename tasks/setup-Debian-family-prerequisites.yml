@@ -4,9 +4,9 @@
   apt: pkg={{ item }} state=present update_cache=yes
   with_items:
    - apache2
-   - php5-gd
+   - php7.0-gd
    - libgd2-xpm-dev
-   - libapache2-mod-php5
+   - libapache2-mod-php7.0
    - unzip
 
 - name: Install Nagios prerequisites for Ubuntu
