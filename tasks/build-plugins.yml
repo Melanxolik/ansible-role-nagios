@@ -7,7 +7,8 @@
   shell: cd {{ download_dir }} && tar -xzvf {{ pluginssrc }}.tar.gz creates={{ download_dir }}/{{ pluginssrc }}
 
 - name: Configure Plugins
-  shell: cd {{ download_dir }}/{{ pluginssrc }} && ./configure --with-nagios-user={{ monitoring_user }} --with-nagios-group=nagios --with-openssl=/usr/bin/openssl creates={{ download_dir }}/{{ pluginssrc }}/Makefile
+  # shell: cd {{ download_dir }}/{{ pluginssrc }} && ./configure --with-nagios-user={{ monitoring_user }} --with-nagios-group=nagios --with-openssl=/usr/bin/openssl creates={{ download_dir }}/{{ pluginssrc }}/Makefile
+  shell: cd {{ download_dir }}/{{ pluginssrc }} && ./configure --with-nagios-user={{ monitoring_user }} --with-nagios-group=nagios --without-openssl creates={{ download_dir }}/{{ pluginssrc }}/Makefile
 
 - name: Make Plugins
   shell: cd {{ download_dir }}/{{ pluginssrc }} && make creates={{ download_dir }}/{{ pluginssrc }}/plugins/check_ping
