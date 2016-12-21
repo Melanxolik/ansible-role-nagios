@@ -31,7 +31,7 @@
 - name: Enable webconf
   command: a2enconf nagios
   when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'xenial'
-  notify: reload apache
+  notify: restart apache
   tags:
     - nagios_enable_config_apache
 
