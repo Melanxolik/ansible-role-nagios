@@ -40,8 +40,7 @@
   when: ansible_distribution == 'Ubuntu' and ansible_distribution_release <= '14.04'
 
 - name: copy systemd boot
-  src: "{{ role_path }}/files/nagios.service"
-  dest: "/etc/systemd/system/nagios.service"
+  copy: src="{{ role_path }}/files/nagios.service" dest="/etc/systemd/system/nagios.service"
   when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == '16.04'
 
 # - name: Ensure Nagios is started by systemd
