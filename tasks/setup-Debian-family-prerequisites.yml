@@ -14,7 +14,11 @@
   with_items:
    #- linux-headers-{{ ansible_kernel }}
    - build-essential
-   - python-passlib
+   # - python-passlib
+   - python-pip
+   - python3-passlib
+   - openssl
+   - libssl-dev
 
 - name: Install Plugin prerequisites for Debian family
   apt: pkg={{ item }} state=present
@@ -26,6 +30,7 @@
    - libpq-dev
    - smbclient
    - gawk
+
 
 # - name: Install Plugin prerequisites for Ubuntu
 #   apt: pkg={{ item }} state=present
