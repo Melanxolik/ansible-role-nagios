@@ -35,6 +35,15 @@
   tags:
     - nagios_enable_config_apache
 
+- name: Enable cgi mod apache
+  apache2_module: name=cgi state=present
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'xenial'
+  notify: restart apache
+  tags:
+    - apache_enable_cgi_mod
+
+
+
 - name: Make install-init
   shell: cd {{ download_dir }}/{{ nagiossrc }} && make install-init creates=/etc/init.d/nagios
   when: ansible_distribution == 'Ubuntu' and ansible_distribution_release != 'xenial'
