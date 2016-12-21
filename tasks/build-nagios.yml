@@ -45,8 +45,14 @@
   tags:
     - nagios_systemd_service_copy
 
+- name: nagios enable systemd profile
+  systemd: name=nagios enabled=yes
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'xenial'
+  tags:
+    - nagios_systemd_enabled
+
 - name: start systemd profile
-  systemd: state=started name=nagios daemon_reload=yes
+  systemd: state=restarted name=nagios daemon_reload=yes
   when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'xenial'
   tags:
     - nagios_systemd_start
