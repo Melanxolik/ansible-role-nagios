@@ -28,6 +28,13 @@
   shell: cd {{ download_dir }}/{{ nagiossrc }} && make install-webconf creates={{ with_httpd_conf }}/nagios.conf
   notify: restart apache
 
+- name: Enable webconf
+  command: a2enconf nagios
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'xenial'
+  notify: reload apache
+  tags:
+    - nagios_enable_config_apache
+
 - name: Make install-init
   shell: cd {{ download_dir }}/{{ nagiossrc }} && make install-init creates=/etc/init.d/nagios
   when: ansible_distribution == 'Ubuntu' and ansible_distribution_release != 'xenial'
