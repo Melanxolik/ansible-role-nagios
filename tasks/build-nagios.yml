@@ -30,6 +30,7 @@
 
 - name: Make install-init
   shell: cd {{ download_dir }}/{{ nagiossrc }} && make install-init creates=/etc/init.d/nagios
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_release != 'xenial'
 
 - name: Set htpasswd for gui users
   htpasswd: path=/usr/local/nagios/etc/htpasswd.users name={{ item.user }} password={{ item.pass }} state=present
